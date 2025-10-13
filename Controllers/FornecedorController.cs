@@ -11,22 +11,6 @@ namespace Controllers
     [Route("[controller]")]
     public class FornecedorController : Controller
     {
-        private readonly ILogger<FornecedorController> _logger;
-
-        public FornecedorController(ILogger<FornecedorController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
-        }
+        
     }
 }
