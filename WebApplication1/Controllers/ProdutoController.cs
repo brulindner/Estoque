@@ -42,7 +42,7 @@ namespace Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Produto>> PostProduto([FromBody] Produto produto, IFormFile? foto)
+        public async Task<ActionResult<Produto>> PostProduto([FromForm] Produto produto, IFormFile? foto)
         {
             if (foto != null)
             {
@@ -68,15 +68,50 @@ namespace Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduto(int id, [FromBody] Produto produto)
+        public async Task<IActionResult> PutProduto(int id, [FromBody] Produto produto, IFormFile? foto)
         {
             if (id != produto.Id)
                 return BadRequest();
 
-            _appDbContext.Entry(produto).State = EntityState.Modified;
+            var produtoExistente = await _appDbContext.Produtos.FindAsync(id);
+            if (produtoExistente == null)
+                return NotFound("Produto não encontrado");
+
+            //Para atualizar os campos
+            produtoExistente.Nome = produto.Nome;
+            produtoExistente.Descricao = produto.Descricao;
+            produtoExistente.Quantidade = produto.Quantidade;
+            produtoExistente.EstoqueMinimo = produto.EstoqueMinimo;
+
+            //Se uma foto já foi enviada
+            if ( foto != null )
+            {
+                var uploads = Path.Combine(_env.WebRootPath, "imagens");
+                if (!Directory.Exists(uploads))
+                    Directory.CreateDirectory(uploads);
+
+                var fileName = $"{Guid.NewGuid()}_{foto.FileName}";
+                var filePath = Path.Combine(uploads, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await foto.CopyToAsync(stream);
+                }
+
+                //Se já tiver foto, pode remover se quiser
+                if (!string.IsNullOrEmpty(produtoExistente.FotoUrl))
+                {
+                    var oldPath = Path.Combine(_env.WebRootPath, produtoExistente.FotoUrl.TrimStart('/'));
+                    if (System.IO.File.Exists(oldPath))
+                        System.IO.File.Delete(oldPath);
+                }
+
+                produtoExistente.FotoUrl = $"/imagens/{fileName}";
+            }
+
             await _appDbContext.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(produtoExistente);
         }
 
         [HttpDelete("{id}")]
