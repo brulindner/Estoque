@@ -9,7 +9,13 @@ using Estoque.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        new MySqlServerVersion(new Version(8, 0, 40)) // sua versão do MySQL
+    )
+);
+
 
 // Adiciona serviços ao contêiner
 builder.Services.AddControllers();
