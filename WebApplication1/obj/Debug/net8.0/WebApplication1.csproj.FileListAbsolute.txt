@@ -131,3 +131,4 @@ C:\Users\Padrao\Documents\Estudos\C#\Estoque\WebApplication1\obj\Debug\net8.0\re
 C:\Users\Padrao\Documents\Estudos\C#\Estoque\WebApplication1\obj\Debug\net8.0\WebApplication1.pdb
 C:\Users\Padrao\Documents\Estudos\C#\Estoque\WebApplication1\obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache
 C:\Users\Padrao\Documents\Estudos\C#\Estoque\WebApplication1\obj\Debug\net8.0\ref\WebApplication1.dll
+C:\Users\Padrao\Documents\Estudos\C#\Estoque\WebApplication1\bin\Debug\net8.0\WebApplication1.staticwebassets.runtime.json
