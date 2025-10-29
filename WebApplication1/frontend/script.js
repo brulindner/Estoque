@@ -18,7 +18,11 @@ async function listarProdutos() {
         const tr = document.createElement("tr");
 
         tr.innerHTML = `
-            <td data-label="Foto"><img class="produto-foto" src="${produto.fotoUrl || 'https://via.placeholder.com/60'}" alt="${produto.nome}"></td>
+            <td data-label="Foto">
+            <img class="produto-foto" 
+                src="http://localhost:5032${produto.fotoUrl || '/imagens/default.jpg'}" 
+                alt="${produto.nome}">
+            </td>
             <td data-label="Nome">${produto.nome}</td>
             <td data-label="Descrição">${produto.descricao || '-'}</td>
             <td data-label="Quantidade">${produto.quantidade}</td>
@@ -49,6 +53,7 @@ produtoForm.addEventListener("submit", async (e) => {
     if (fotoFile) formData.append("foto", fotoFile);
 
     if (editMode) {
+        formData.append("Id", editId); //Adiciona o ID ao FormData
         const res = await fetch(`${apiUrl}/${editId}`, {
             method: "PUT",
             body: formData

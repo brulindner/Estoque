@@ -39,7 +39,7 @@ app.UseCors(x => x
 .AllowAnyHeader());
 
 app.UseStaticFiles(); //para servir imagens salvas em wwwroot
-
+app.UseCors("AllowAll"); 
 app.MapControllers();
 
 app.Run();

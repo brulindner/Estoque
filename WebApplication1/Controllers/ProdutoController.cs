@@ -71,7 +71,9 @@ namespace Controllers
 
        [HttpPut("{id}")]
 public async Task<IActionResult> PutProduto(int id, [FromForm] Produto produto, IFormFile? foto)
-{
+        {
+    
+    
     if (id != produto.Id)
         return BadRequest();
 
