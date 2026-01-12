@@ -28,10 +28,10 @@ async function listarProdutos() {
             <td data-label="Quantidade">${produto.quantidade}</td>
             <td data-label="Estoque Mínimo">${produto.estoqueMinimo}</td>
             <td data-label="Ações" class="action-buttons">
-                <button onclick="editarProduto(${produto.id})">Editar</button>
-                <button onclick="excluirProduto(${produto.id})">Excluir</button>
-                <button onclick="entradaEstoque(${produto.id})">+ Estoque</button>
-                <button onclick="saidaEstoque(${produto.id})">- Estoque</button>
+                <button class="edit-btn" onclick="editarProduto(${produto.id})">Editar</button>
+                <button class="excluir-btn" onclick="excluirProduto(${produto.id})">Excluir</button>
+                <button class="adicionar-btn" onclick="entradaEstoque(${produto.id})">+ Estoque</button>
+                <button class="remover-btn" onclick="saidaEstoque(${produto.id})">- Estoque</button>
             </td>
         `;
 
