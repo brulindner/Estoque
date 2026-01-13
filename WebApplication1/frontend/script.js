@@ -1,4 +1,4 @@
-const apiUrl = "http://localhost:5032/api/produto"; // ajuste conforme sua API
+const apiUrl = "http://localhost:5032/api/produto"; 
 
 const produtoForm = document.getElementById("produtoForm");
 const produtosTableBody = document.querySelector("#produtosTable tbody");
