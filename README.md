@@ -3,8 +3,6 @@
 Um sistema para gerenciamento de produtos e controle de fluxo de estoque, desenvolvido com arquitetura **REST API** no back-end e interface web responsiva.
 
 ![Status do Projeto](https://img.shields.io/badge/Status-Concluído-brightgreen)
-![Tech](https://img.shields.io/badge/.NET-6.0%2F8.0-purple)
-![Tech](https://img.shields.io/badge/C%23-Advanced-blue)
 ![Tech](https://img.shields.io/badge/MySQL-Database-orange)
 
 
